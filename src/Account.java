@@ -5,11 +5,16 @@ public class Account {
     private long acctNumber;
     private double balance;
     private String name;
+    private Audit audit;
 
     public Account(String owner, long account, double initial) {
         name = owner;
         acctNumber = account;
         balance = initial;
+    }
+
+    public void setAudit(Audit audit) {
+        this.audit = audit;
     }
 
     public double deposit(double amount) {
@@ -20,7 +25,8 @@ public class Account {
     }
 
     public double withdraw(double amount, double fee) {
-        balance = balance - amount - fee;
+        if (amount >= 5000 && audit.permit(acctNumber, balance))
+            balance = balance - amount - fee;
         return balance;
     }
 

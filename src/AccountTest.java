@@ -13,7 +13,7 @@ public class AccountTest {
     public void setUp() {
         account1 = new Account("Ted Murphy", 72354, 102.56);
         account2 = new Account("Jane Smith", 69713, 40.00);
-        account3 = new Account("Edward Demsey", 93757, 759.32);
+        account3 = new Account("Edward Demsey", 93757, 7597.32);
         account4 = account1;
     }
 
@@ -36,10 +36,11 @@ public class AccountTest {
 
     @Test
     public void testWithdraw() {
-        if (account2 != null) {
-            account2.withdraw(10, 2);
+        account3.setAudit(new StubAudit());
+        if (account3 != null) {
+            account3.withdraw(5010, 10);
         }
-        assertEquals("Withdrawal amount incorrect", 28.00, account2.getBalance(), 0.001);
+        assertEquals("Withdrawal amount incorrect", 2577.32, account3.getBalance(), 0.001);
     }
 
     @Test
